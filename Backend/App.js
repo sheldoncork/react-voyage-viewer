@@ -6,7 +6,6 @@ var app = express();
 app.use(cors());
 app.use(json());
 
-
 const port = "8081";
 const host = "localhost";
 app.listen(port, () => {

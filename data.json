@@ -1,0 +1,116 @@
+[
+        {
+            "id": 0,
+            "location": "New York City",
+            "type": "City",
+            "description" : "Experience the energy of the Big Apple with its iconic skyline, world-class museums, Broadway shows, diverse neighborhoods, and endless culinary delights.",
+            "image": "./images/NewYorkCity.jpg", 
+            "individualImages" : [
+                "./images/CentralPark-NYC.jpg", 
+                "./images/TimesSquare-NYC.jpg",
+                "./images/ChinaTown-NYC.jpg",
+                "./images/Liberty-NYC.jpg"
+            ],
+            "individualDescriptions": [
+                "Escape the urban jungle and lose yourself in this sprawling 843-acre oasis of lush greenery, tranquil lakes, and hidden treasures in the heart of Manhattan.",
+                "Immerse yourself in the dazzling lights, larger-than-life billboards, and electric energy of the 'Crossroads of the World', where the pulse of New York City beats strongest.",
+                "Dive into a vibrant slice of the Far East in Lower Manhattan, where bustling streets are filled with exotic aromas, colorful markets, and authentic dim sum joints.",
+                "Stand in awe before this colossal copper icon of freedom, rising majestically from New York Harbor as a beacon of hope and symbol of the American dream."
+            ]
+        }, 
+        {
+            "id": 1,
+            "location": "Chicago",
+            "type": "City",
+            "description": "Discover the Windy City's stunning architecture, vibrant arts scene, deep-dish pizza, and beautiful lakefront, all with Midwestern charm.",
+            "image": "./images/Chicago.jpg",
+            "individualImages" : [
+                "./images/River-Chicago.jpg", 
+                "./images/Bean-Chicago.jpg",
+                "./images/Beach-Chicago.jpg",
+                "./images/Train-Chicago.jpg"
+            ],
+            "individualDescriptions": [
+                "Explore the winding Chicago River that cuts through downtown, offering a unique perspective of the city's stunning architecture.",
+                "Marvel at the mesmerizing reflections of the city in the gleaming Cloud Gate sculpture (affectionately known as 'The Bean').",
+                "Soak up the sun on the vibrant lakefront beaches along Lake Michigan.",
+                "Ride the historic 'L' trains that weave through the city's skyline!"
+            ]
+        }, 
+        {
+            "id": 2,
+            "location": "San Francisco",
+            "type": "Beach",
+            "description" : "Explore the City by the Bay's steep hills, iconic Golden Gate Bridge, colorful Victorian houses, diverse neighborhoods, and thriving food scene.",
+            "image": "./images/SanFrancisco.jpg",
+            "individualImages" : [
+                "./images/BayArea-SF.jpg", 
+                "./images/Bridge-SF.jpg",
+                "./images/Surf-SF.jpg",
+                "./images/Trolley-SF.jpg"
+            ],
+            "individualDescriptions": [
+                "Immerse yourself in the captivating San Francisco Bay Area.",
+                "Marvel at the iconic Golden Gate Bridge spanning the misty waters.",
+                "Catch thrilling waves at Ocean Beach's renowned surf spots!",
+                "Hop aboard the charming cable cars that climb the city's steep hills, offering panoramic views of this diverse and picturesque metropolis."
+            ]
+        }, 
+        {
+            "id": 3,
+            "location": "Miami",
+            "type": "Beach",
+            "description" : "Soak up the sun in this vibrant coastal metropolis, known for its beautiful beaches, Art Deco architecture, Cuban culture, and pulsating nightlife.",
+            "image": "./images/Miami.jpg",
+            "individualImages" : [
+                "./images/Beach-Miami.jpg", 
+                "./images/Nightlife-Miami.jpg",
+                "./images/Donwntown-Miami.jpg",
+                "./images/Boat-Miami.jpg"
+            ],
+            "individualDescriptions": [
+                "Dive into the vibrant energy of Miami! You can bask in the sun on the pristine white sands of Miami Beach.",
+                "Dance the night away in world-famous clubs.",
+                "Explore the sleek skyscrapers and cultural hotspots of downtown.",
+                "Set sail on crystal-clear waters to experience the city's glamorous boating scene and stunning coastal vistas."
+            ]
+        }, 
+        {
+            "id": 4,
+            "location": "Jackson Hole",
+            "type": "Mountain",
+            "description" : " Immerse yourself in the rugged beauty of this mountain town, offering world-class skiing, breathtaking national parks, and authentic Western charm.",
+            "image": "./images/JacksonHole.jpg",
+            "individualImages" : [
+                "./images/Shops-JacksonHole.jpg", 
+                "./images/Ski-JacksonHole.jpg",
+                "./images/Hike-JacksonHole.jpg",
+                "./images/OldTown-JacksonHole.jpg"
+            ],
+            "individualDescriptions": [
+                "Experience the Wild West charm of Jackson Hole's Old Town with numerous restaurants and boutiques!",
+                "Venture out to conquer world-class ski slopes in the winter.",
+                "Hike breathtaking mountain trails in summer, all while immersing yourself in the rugged beauty of the Teton Range.",
+                "Snap a selfie beneath the iconic elk antler arches!"
+            ]
+        },
+        {
+            "id": 5,
+            "location": "Denver",
+            "type": "Mountain",
+            "description" : "Embrace the Mile High City's outdoor adventures, craft beer scene, and cultural attractions, all set against the stunning backdrop of the Rocky Mountains.",
+            "image": "./images/Denver.jpg",
+            "individualImages" : [
+                "./images/Winter-Denver.jpg", 
+                "./images/RedRock-Denver.jpg",
+                "./images/Hike-Denver.jpg",
+                "./images/City-Denver.jpg"
+            ],
+            "individualDescriptions": [
+                "Denver offers a year-round adventure, embrace the crisp winter air and world-class skiing in nearby mountains.",
+                "Rock out under the stars at the stunning Red Rocks Amphitheatre carved into ancient sandstone.",
+                "Explore miles of scenic hiking trails in the nearby Rockies.",
+                "Immerse yourself in the vibrant urban culture of the Mile High City with its thriving craft beer scene, diverse neighborhoods, and modern downtown skyline."           
+            ]
+        }
+    ]
