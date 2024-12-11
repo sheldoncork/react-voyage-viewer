@@ -19,6 +19,14 @@ const dbName = "voyage_viewer";
 const client = new MongoClient(url);
 const db = client.db(dbName);
 
+// Login
+app.get("/login", async (req, res) => {
+  await client.connect();
+  const query = {};
+
+  const user = db.collection("user").find(query).limit(1);
+});
+
 // GET All
 app.get("/destination", async (req, res) => {
     await client.connect();
