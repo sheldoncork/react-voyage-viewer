@@ -8,20 +8,19 @@ const Authentication = ({ username, setUsername, password, setPassword, setUserR
         e.preventDefault();
         try {
         const response = await
-        fetch("http://localhost:8081/contact/login", {
+        fetch("http://localhost:8081/login", {
             method: "POST",
             headers: { "Content-Type": "application/json", },
             body: JSON.stringify({ username, password }),
         });
-    
+
+        const data = await response.json();
         if (!response.ok) {
-            const errorData = await response.json();
-            setError(errorData.error);
+            setError(data.error);
             return;
         }
         
-        const { role } = await response.json();
-        setUserRole(role); // Set the user role (admin/user)
+        setUserRole(data); // Set the user role (admin/user)
         } catch (err) {
             console.log("Failed to log in. Please try again."+err);
             setError("Failed to log in. Please try again. " + err);
