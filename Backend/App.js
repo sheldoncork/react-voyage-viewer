@@ -2,9 +2,21 @@ import express, { json } from "express";
 import cors from "cors";
 import { MongoClient } from "mongodb";
 import fs from "fs";
+import bodyParser from "body-parser";
+import path from 'path';
+import { fileURLToPath } from 'url';
+import multer from "multer";
+
+// Get the directory name in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 var app = express();
 app.use(cors());
-app.use(json());
+app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.static("public"));
+app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // Serve images
 
 const port = "8081";
 const host = "localhost";
@@ -14,9 +26,27 @@ app.listen(port, () => {
 
 // MongoDB constants
 const url = "mongodb://127.0.0.1:27017";
-const dbName = "voyage_viewer";
+const dbName = "voyage-viewer";
 const client = new MongoClient(url);
 const db = client.db(dbName);
+
+// Set up multer for image uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/"); // Save images in the 'uploads' folder
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
+  },
+});
+
+const upload = multer({ storage: storage });
+
+// Create "uploads" folder if it doesn't exist
+if (!fs.existsSync("uploads")) {
+  fs.mkdirSync("uploads");
+}
+
 
 // Login
 app.post("/login", async (req, res) => {
@@ -44,11 +74,16 @@ app.post("/login", async (req, res) => {
 });
 
 // GET All
-app.get("/destination", async (req, res) => {
+app.get("/destinations", async (req, res) => {
     await client.connect();
-    const query = {};
-    const results = await db.collection("destination").find(query).limit(100).toArray();
+    const results = await db.collection("destination").find({}).toArray();
   
     if (!results) res.status(404);
     else res.send(results).status(200);
+});
+
+// POST a new contact (with image)
+app.post("/contact", upload.single("image"), (req, res) => {
+  const { contact_name, phone_number, message } = req.body;
+  const image_url = req.file ? `/uploads/${req.file.filename}` : null;
 });
