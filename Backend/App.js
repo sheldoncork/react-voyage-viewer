@@ -82,8 +82,50 @@ app.get("/destinations", async (req, res) => {
     else res.send(results).status(200);
 });
 
-// POST a new contact (with image)
-app.post("/contact", upload.single("image"), (req, res) => {
-  const { contact_name, phone_number, message } = req.body;
-  const image_url = req.file ? `/uploads/${req.file.filename}` : null;
+// POST multiple images and multiple descriptions
+app.post("/destination", upload.single('image'), async (req, res) => {
+  try {
+      // get the next ID
+      const destinations = await db.collection("destination").find({}).toArray();
+      const nextId = destinations.length > 0 
+          ? Math.max(...destinations.map(d => d.id)) + 1 
+          : 0;
+
+      // Prepare destination data
+      const destinationData = {
+          id: nextId,
+          location: req.body.location,
+          type: req.body.type,
+          description: req.body.description,
+          
+          // Handle main image upload
+          image: req.file 
+              ? `/uploads/${req.file.filename}` 
+              : req.body.image || '',
+
+          // Handle individual images uploads
+          individualImages: req.body.individualImages 
+              ? JSON.parse(req.body.individualImages) 
+              : [],
+
+          // Handle individual descriptions
+          individualDescriptions: req.body.individualDescriptions 
+              ? JSON.parse(req.body.individualDescriptions) 
+              : []
+      };
+
+      // Insert into MongoDB
+      const result = await db.collection("destination").insertOne(destinationData);
+
+      res.status(200).json({ 
+          message: "Destination added successfully",
+          destination: destinationData
+      });
+  } catch (error) {
+      console.error("Destination upload error:", error);
+      res.status(500).json({ 
+          error: "Upload failed", 
+          details: error.message 
+      });
+  }
 });

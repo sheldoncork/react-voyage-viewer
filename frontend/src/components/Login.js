@@ -20,7 +20,7 @@ const Authentication = ({ username, setUsername, password, setPassword, setUserR
             return;
         }
         
-        setUserRole(data); // Set the user role (admin/user)
+        setUserRole(data.user.role); // Set the user role (admin/user)
         } catch (err) {
             console.log("Failed to log in. Please try again."+err);
             setError("Failed to log in. Please try again. " + err);
