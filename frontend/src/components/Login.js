@@ -29,7 +29,7 @@ const Authentication = ({ username, setUsername, password, setPassword, setUserR
 
     return (
         <div className="container mt-4">
-            <h2 className="text-center">Login</h2>
+            <h2 className="text-center">Login to Voyage Viewer</h2>
                 <form onSubmit={handleLogin}>
                     <div className="mb-3">
                         <label className="form-label">Username</label>
