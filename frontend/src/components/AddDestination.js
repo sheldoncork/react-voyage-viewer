@@ -53,81 +53,128 @@ function AddDestination() {
         if (formData.image) {
             data.append('image', formData.image);
         }
-
+    
         // Append individual images
-        formData.individualImages.forEach((file, index) => {
-            data.append(`individualImage${index}`, file);
+        formData.individualImages.forEach((file) => {
+            data.append('individualImages', file);
         });
-
+    
         // Append individual descriptions
         data.append('individualDescriptions', JSON.stringify(formData.individualDescriptions));
-
+    
         try {
-            const response = await
-            fetch("http://localhost:8081/destination", {
-            method: "POST",
-            headers: { "Content-Type": "multipart/form-data", },
-            body: data,
+            console.log(data);
+            const response = await fetch("http://localhost:8081/destination", {
+                method: "POST",
+                body: data,
             });
-            console.log('Upload successful', response.data);
+            console.log('Upload successful', await response.json());
         } catch (error) {
             console.error('Upload failed', error);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
+        <div className="container my-5">
+          <h2 className="text-center mb-4">Add a New Destination</h2>
+          <form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm bg-light">
+            <div className="mb-3">
+              <label htmlFor="location" className="form-label">
+                Location
+              </label>
+              <input
                 type="text"
                 name="location"
+                id="location"
+                className="form-control"
                 value={formData.location}
                 onChange={handleInputChange}
-                placeholder="Location"
+                placeholder="Enter the location"
                 required
-            />
-            <input
+              />
+            </div>
+    
+            <div className="mb-3">
+              <label htmlFor="type" className="form-label">
+                Type
+              </label>
+              <input
                 type="text"
                 name="type"
+                id="type"
+                className="form-control"
                 value={formData.type}
                 onChange={handleInputChange}
-                placeholder="Type"
+                placeholder="Enter the type"
                 required
-            />
-            <textarea
+              />
+            </div>
+    
+            <div className="mb-3">
+              <label htmlFor="description" className="form-label">
+                Description
+              </label>
+              <textarea
                 name="description"
+                id="description"
+                className="form-control"
                 value={formData.description}
                 onChange={handleInputChange}
-                placeholder="Description"
+                placeholder="Enter a detailed description"
                 required
-            />
-            
+              />
+            </div>
+    
             {/* Main Image Upload */}
-            <input
+            <div className="mb-3">
+              <label htmlFor="image" className="form-label">
+                Main Image
+              </label>
+              <input
                 type="file"
                 name="image"
+                id="image"
+                className="form-control"
                 onChange={handleMainImageChange}
-            />
-
+                required
+              />
+            </div>
+    
             {/* Individual Images Upload */}
-            <input
+            <div className="mb-3">
+              <label htmlFor="individualImages" className="form-label">
+                Individual Images
+              </label>
+              <input
                 type="file"
                 multiple
+                name="individualImages"
+                id="individualImages"
+                className="form-control"
                 onChange={handleIndividualImagesChange}
-            />
-
+              />
+            </div>
+    
             {/* Individual Descriptions */}
-            {[1, 2, 3, 4].map((_, index) => (
+            <div className="mb-3">
+              <label className="form-label">Individual Descriptions</label>
+              {[1, 2, 3, 4].map((_, index) => (
                 <textarea
-                    key={index}
-                    value={formData.individualDescriptions[index] || ''}
-                    onChange={(e) => handleIndividualDescriptionChange(e, index)}
-                    placeholder={`Individual Description ${index + 1}`}
+                  key={index}
+                  className="form-control mb-2"
+                  value={formData.individualDescriptions[index] || ""}
+                  onChange={(e) => handleIndividualDescriptionChange(e, index)}
+                  placeholder={`Individual Description ${index + 1}`}
                 />
-            ))}
-
-            <button type="submit">Upload Destination</button>
-        </form>
-    );
-}
+              ))}
+            </div>
+    
+            <button type="submit" className="btn btn-primary w-100 mt-4">
+              Upload Destination
+            </button>
+          </form>
+        </div>
+      );
+    };
 
 export default AddDestination;
