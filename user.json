@@ -2,11 +2,13 @@
     {
         "username": "user",
         "password": "password",
-        "role": "USER"
+        "role": "USER",
+        "saved": ["1", "2"]
     },
     {
         "username": "admin",
         "password": "password",
-        "role": "ADMIN"
+        "role": "ADMIN",
+        "saved": []
     }
 ]

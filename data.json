@@ -16,7 +16,15 @@
                 "Immerse yourself in the dazzling lights, larger-than-life billboards, and electric energy of the 'Crossroads of the World', where the pulse of New York City beats strongest.",
                 "Dive into a vibrant slice of the Far East in Lower Manhattan, where bustling streets are filled with exotic aromas, colorful markets, and authentic dim sum joints.",
                 "Stand in awe before this colossal copper icon of freedom, rising majestically from New York Harbor as a beacon of hope and symbol of the American dream."
-            ]
+            ],
+			"activities": [
+				"Take a ferry out!",
+                "Visit central park!"
+			],
+			"pros_cons": [
+				"- Lots of people",
+				"+ Lots of people"
+			]
         }, 
         {
             "id": 1,

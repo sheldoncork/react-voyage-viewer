@@ -142,12 +142,12 @@ app.post("/destination", upload.single('image'), async (req, res) => {
 // GET single using ?id=5
 app.get("/destination", async (req, res) => {
   const id = parseInt(req.query.id);
-  if (!id) { 
+  if (isNaN(id)) { 
     return res.status(400).send('ID query parameter is required');
   }
 
   try{
-    const destination = await db.collection("destination").findOne({id});
+    const destination = await db.collection("destination").findOne({id: id});
     if (!destination){
       res.status(404).send('ID not found!');
     }
@@ -157,4 +157,32 @@ app.get("/destination", async (req, res) => {
     res.status(500).send(error);
   }
 
+});
+
+// PUT to save destination
+app.put("/save-destination", async (req, res) => {
+  const { username, destinationID } = req.body;
+
+  if (!username || !destinationID) {
+    return res.status(400).send({ message: "Username and destinationID are required" });
+  }
+
+  try {
+    await client.connect();
+    const userCollection = db.collection("user");
+
+    const result = await userCollection.updateOne(
+      { username },  // Find the user
+      { $addToSet: { saved: destinationID } } // add to array
+    );
+
+    if (result.modifiedCount === 0) {
+      return res.status(404).send({ message: "User not found or destination already saved" });
+    }
+
+    res.status(200).send({ message: "Destination saved successfully" });
+  } catch (error) {
+    console.error("Error saving destination:", error);
+    res.status(500).send({ message: "Error saving destination", error });
+  }
 });
