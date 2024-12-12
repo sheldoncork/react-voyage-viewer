@@ -4,12 +4,12 @@
             "location": "New York City",
             "type": "City",
             "description" : "Experience the energy of the Big Apple with its iconic skyline, world-class museums, Broadway shows, diverse neighborhoods, and endless culinary delights.",
-            "image": "./images/NewYorkCity.jpg", 
+            "image": "http://localhost:8081/uploads/NewYorkCity.jpg", 
             "individualImages" : [
-                "./images/CentralPark-NYC.jpg", 
-                "./images/TimesSquare-NYC.jpg",
-                "./images/ChinaTown-NYC.jpg",
-                "./images/Liberty-NYC.jpg"
+                "http://localhost:8081/uploads/CentralPark-NYC.jpg", 
+                "http://localhost:8081/uploads/TimesSquare-NYC.jpg",
+                "http://localhost:8081/uploads/ChinaTown-NYC.jpg",
+                "http://localhost:8081/uploads/Liberty-NYC.jpg"
             ],
             "individualDescriptions": [
                 "Escape the urban jungle and lose yourself in this sprawling 843-acre oasis of lush greenery, tranquil lakes, and hidden treasures in the heart of Manhattan.",
@@ -31,12 +31,12 @@
             "location": "Chicago",
             "type": "City",
             "description": "Discover the Windy City's stunning architecture, vibrant arts scene, deep-dish pizza, and beautiful lakefront, all with Midwestern charm.",
-            "image": "./images/Chicago.jpg",
+            "image": "http://localhost:8081/uploads/Chicago.jpg",
             "individualImages" : [
-                "./images/River-Chicago.jpg", 
-                "./images/Bean-Chicago.jpg",
-                "./images/Beach-Chicago.jpg",
-                "./images/Train-Chicago.jpg"
+                "http://localhost:8081/uploads/River-Chicago.jpg", 
+                "http://localhost:8081/uploads/Bean-Chicago.jpg",
+                "http://localhost:8081/uploads/Beach-Chicago.jpg",
+                "http://localhost:8081/uploads/Train-Chicago.jpg"
             ],
             "individualDescriptions": [
                 "Explore the winding Chicago River that cuts through downtown, offering a unique perspective of the city's stunning architecture.",
@@ -50,12 +50,12 @@
             "location": "San Francisco",
             "type": "Beach",
             "description" : "Explore the City by the Bay's steep hills, iconic Golden Gate Bridge, colorful Victorian houses, diverse neighborhoods, and thriving food scene.",
-            "image": "./images/SanFrancisco.jpg",
+            "image": "http://localhost:8081/uploads/SanFrancisco.jpg",
             "individualImages" : [
-                "./images/BayArea-SF.jpg", 
-                "./images/Bridge-SF.jpg",
-                "./images/Surf-SF.jpg",
-                "./images/Trolley-SF.jpg"
+                "http://localhost:8081/uploads/BayArea-SF.jpg", 
+                "http://localhost:8081/uploads/Bridge-SF.jpg",
+                "http://localhost:8081/uploads/Surf-SF.jpg",
+                "http://localhost:8081/uploads/Trolley-SF.jpg"
             ],
             "individualDescriptions": [
                 "Immerse yourself in the captivating San Francisco Bay Area.",
@@ -69,12 +69,12 @@
             "location": "Miami",
             "type": "Beach",
             "description" : "Soak up the sun in this vibrant coastal metropolis, known for its beautiful beaches, Art Deco architecture, Cuban culture, and pulsating nightlife.",
-            "image": "./images/Miami.jpg",
+            "image": "http://localhost:8081/uploads/Miami.jpg",
             "individualImages" : [
-                "./images/Beach-Miami.jpg", 
-                "./images/Nightlife-Miami.jpg",
-                "./images/Donwntown-Miami.jpg",
-                "./images/Boat-Miami.jpg"
+                "http://localhost:8081/uploads/Beach-Miami.jpg", 
+                "http://localhost:8081/uploads/Nightlife-Miami.jpg",
+                "http://localhost:8081/uploads/Donwntown-Miami.jpg",
+                "http://localhost:8081/uploads/Boat-Miami.jpg"
             ],
             "individualDescriptions": [
                 "Dive into the vibrant energy of Miami! You can bask in the sun on the pristine white sands of Miami Beach.",
@@ -88,12 +88,12 @@
             "location": "Jackson Hole",
             "type": "Mountain",
             "description" : " Immerse yourself in the rugged beauty of this mountain town, offering world-class skiing, breathtaking national parks, and authentic Western charm.",
-            "image": "./images/JacksonHole.jpg",
+            "image": "http://localhost:8081/uploads/JacksonHole.jpg",
             "individualImages" : [
-                "./images/Shops-JacksonHole.jpg", 
-                "./images/Ski-JacksonHole.jpg",
-                "./images/Hike-JacksonHole.jpg",
-                "./images/OldTown-JacksonHole.jpg"
+                "http://localhost:8081/uploads/Shops-JacksonHole.jpg", 
+                "http://localhost:8081/uploads/Ski-JacksonHole.jpg",
+                "http://localhost:8081/uploads/Hike-JacksonHole.jpg",
+                "http://localhost:8081/uploads/OldTown-JacksonHole.jpg"
             ],
             "individualDescriptions": [
                 "Experience the Wild West charm of Jackson Hole's Old Town with numerous restaurants and boutiques!",
@@ -107,12 +107,12 @@
             "location": "Denver",
             "type": "Mountain",
             "description" : "Embrace the Mile High City's outdoor adventures, craft beer scene, and cultural attractions, all set against the stunning backdrop of the Rocky Mountains.",
-            "image": "./images/Denver.jpg",
+            "image": "http://localhost:8081/uploads/Denver.jpg",
             "individualImages" : [
-                "./images/Winter-Denver.jpg", 
-                "./images/RedRock-Denver.jpg",
-                "./images/Hike-Denver.jpg",
-                "./images/City-Denver.jpg"
+                "http://localhost:8081/uploads/Winter-Denver.jpg", 
+                "http://localhost:8081/uploads/RedRock-Denver.jpg",
+                "http://localhost:8081/uploads/Hike-Denver.jpg",
+                "http://localhost:8081/uploads/City-Denver.jpg"
             ],
             "individualDescriptions": [
                 "Denver offers a year-round adventure, embrace the crisp winter air and world-class skiing in nearby mountains.",

@@ -13,7 +13,7 @@ function About() {
       <section className="py-3 container">
         <div className="Team">
           <div className="Students">
-            {/* <img src={sheldonImage} alt="Sheldon Corkery" /> */}
+            <img src="http://localhost:8081/uploads/sheldon.jpg" alt="Sheldon Corkery" width={500}/>
             <h1>Sheldon Corkery</h1>
             <h3>sheldonc@iastate.edu</h3>
             <p>
@@ -23,7 +23,7 @@ function About() {
             </p>
           </div>
           <div className="Students">
-            {/* <img src={kennedyImage} alt="Kennedy Wendl" /> */}
+            <img src="http://localhost:8081/uploads/kennedy.jpg" alt="Kennedy Wendl" width={500}/>
             <h1>Kennedy Wendl</h1>
             <h3>kmwendl@iastate.edu</h3>
             <p>
