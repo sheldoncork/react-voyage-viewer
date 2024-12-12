@@ -14,7 +14,8 @@ app.listen(port, () => {
 
 // MongoDB constants
 const url = "mongodb://127.0.0.1:27017";
-const dbName = "voyage_viewer";
+const dbName = "voyage-viewer";
+// const { MongoClient } = require("mongodb");
 const client = new MongoClient(url);
 const db = client.db(dbName);
 
@@ -32,6 +33,7 @@ app.post("/login", async (req, res) => {
     const user = await db.collection("user").findOne({ username, password });
 
     if (!user) {
+      console.log(user)
       return res.status(401).send({ error: "Invalid username or password." });
     }
 
@@ -44,7 +46,7 @@ app.post("/login", async (req, res) => {
 });
 
 // GET All
-app.get("/destination", async (req, res) => {
+app.get("/destinations", async (req, res) => {
     await client.connect();
     const query = {};
     const results = await db.collection("destination").find(query).limit(100).toArray();
