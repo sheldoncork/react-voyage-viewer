@@ -8,6 +8,7 @@ import Destinations from './components/Destinations';
 import Authentication from './components/Login';
 import AddDestination from './components/AddDestination';
 import UpdateDestination from './components/UpdateDestination';
+import Destination from './components/Destination';
 
 function App() {
   const [userRole, setUserRole] = useState("");
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/destinations" element={<Destinations />} />
+          <Route path="/destination" element={<Destination />}/>
             {userRole === "ADMIN" && (
                 <>
                   <Route path="/destination/add" element={<AddDestination /> }/>

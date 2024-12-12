@@ -30,6 +30,16 @@ const dbName = "voyage-viewer";
 const client = new MongoClient(url);
 const db = client.db(dbName);
 
+// Instant function auto connects for all endpoints
+(async () => {
+  try {
+    await client.connect();
+    console.log("Connected to MongoDB!");
+  } catch (err) {
+    console.error("Failed to connect to MongoDB:", err);
+  }
+})();
+
 // Set up multer for image uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -50,7 +60,6 @@ if (!fs.existsSync("uploads")) {
 
 // Login
 app.post("/login", async (req, res) => {
-  await client.connect();
   
   const { username, password } = req.body;
 
@@ -76,7 +85,6 @@ app.post("/login", async (req, res) => {
 
 // GET All
 app.get("/destinations", async (req, res) => {
-    await client.connect();
     const results = await db.collection("destination").find({}).toArray();
   
     if (!results) res.status(404);
@@ -129,4 +137,24 @@ app.post("/destination", upload.single('image'), async (req, res) => {
           details: error.message 
       });
   }
+});
+
+// GET single using ?id=5
+app.get("/destination", async (req, res) => {
+  const id = parseInt(req.query.id);
+  if (!id) { 
+    return res.status(400).send('ID query parameter is required');
+  }
+
+  try{
+    const destination = await db.collection("destination").findOne({id});
+    if (!destination){
+      res.status(404).send('ID not found!');
+    }
+    res.status(200).send(destination);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error);
+  }
+
 });
