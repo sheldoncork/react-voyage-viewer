@@ -3,7 +3,7 @@
         "username": "user",
         "password": "password",
         "role": "USER",
-        "saved": ["1", "2"]
+        "saved": [1, 2]
     },
     {
         "username": "admin",

@@ -92,50 +92,98 @@ app.get("/destinations", async (req, res) => {
 });
 
 // POST multiple images and multiple descriptions
-app.post("/destination", upload.single('image'), async (req, res) => {
+app.post("/destination", upload.fields([
+  { name: 'image', maxCount: 1 },  // Main image
+  { name: 'individualImages', maxCount: 4 },  // Individual images
+]), async (req, res) => {
+  console.log('Files:', req.files);
+console.log('Body:', req.body);
   try {
-      // get the next ID
-      const destinations = await db.collection("destination").find({}).toArray();
-      const nextId = destinations.length > 0 
-          ? Math.max(...destinations.map(d => d.id)) + 1 
-          : 0;
+    const lastDestination = await db.collection("destination").find().limit(1).sort({ $natural: -1 }).toArray();
+    const nextId = lastDestination.length > 0 ? lastDestination[0].id + 1 : 0;
 
-      // Prepare destination data
-      const destinationData = {
-          id: nextId,
-          location: req.body.location,
-          type: req.body.type,
-          description: req.body.description,
-          
-          // Handle main image upload
-          image: req.file 
-              ? `/uploads/${req.file.filename}` 
-              : req.body.image || '',
+    // Prepare destination data
+    const destinationData = {
+      id: nextId,
+      location: req.body.location,
+      type: req.body.type,
+      description: req.body.description,
 
-          // Handle individual images uploads
-          individualImages: req.body.individualImages 
-              ? JSON.parse(req.body.individualImages) 
-              : [],
+      // Handle main image upload
+      image: req.files['image'] ? `/uploads/${req.files['image'][0].filename}` : req.body.image || '',
 
-          // Handle individual descriptions
-          individualDescriptions: req.body.individualDescriptions 
-              ? JSON.parse(req.body.individualDescriptions) 
-              : []
-      };
+      // Handle individual images uploads
+      individualImages: req.files['individualImages']
+        ? req.files['individualImages'].map(file => `/uploads/${file.filename}`)
+        : req.body.individualImages || [],
 
-      // Insert into MongoDB
-      const result = await db.collection("destination").insertOne(destinationData);
+      // Handle individual descriptions
+      individualDescriptions: req.body.individualDescriptions
+        ? JSON.parse(req.body.individualDescriptions)
+        : []
+    };
 
-      res.status(200).json({ 
-          message: "Destination added successfully",
-          destination: destinationData
-      });
+    // Insert into MongoDB
+    const result = await db.collection("destination").insertOne(destinationData);
+
+    res.status(200).json({
+      message: "Destination added successfully",
+      destination: destinationData
+    });
   } catch (error) {
-      console.error("Destination upload error:", error);
-      res.status(500).json({ 
-          error: "Upload failed", 
-          details: error.message 
-      });
+    console.error("Destination upload error:", error);
+    res.status(500).json({
+      error: "Upload failed",
+      details: error.message
+    });
+  }
+});
+
+// PUT endpoint to update destination
+app.put("/update-destination", upload.fields([
+  { name: 'image', maxCount: 1 },
+  { name: 'individualImages', maxCount: 4 },
+]), async (req, res) => {
+  try {
+    const destinationID = parseInt(req.body.id);
+
+    const updatedDestinationData = {
+      location: req.body.location,
+      type: req.body.type,
+      description: req.body.description,
+
+      image: req.files['image'] 
+        ? `/uploads/${req.files['image'][0].filename}` 
+        : req.body.image,
+
+      individualImages: req.files['individualImages']
+        ? req.files['individualImages'].map(file => `/uploads/${file.filename}`)
+        : req.body.individualImages || [],
+
+      individualDescriptions: req.body.individualDescriptions
+        ? JSON.parse(req.body.individualDescriptions)
+        : []
+    };
+
+    const result = await db.collection("destination").updateOne(
+      { id: destinationID },
+      { $set: updatedDestinationData }
+    );
+
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ message: "Destination not found" });
+    }
+
+    res.status(200).json({
+      message: "Destination updated successfully",
+      destination: updatedDestinationData
+    });
+  } catch (error) {
+    console.error("Destination update error:", error);
+    res.status(500).json({
+      error: "Update failed",
+      details: error.message
+    });
   }
 });
 
@@ -163,15 +211,12 @@ app.get("/destination", async (req, res) => {
 app.put("/save-destination", async (req, res) => {
   const { username, destinationID } = req.body;
 
-  if (!username || !destinationID) {
+  if (!username || isNaN(destinationID)) {
     return res.status(400).send({ message: "Username and destinationID are required" });
   }
 
   try {
-    await client.connect();
-    const userCollection = db.collection("user");
-
-    const result = await userCollection.updateOne(
+    const result = await db.collection("user").updateOne(
       { username },  // Find the user
       { $addToSet: { saved: destinationID } } // add to array
     );

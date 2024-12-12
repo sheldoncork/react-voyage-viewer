@@ -24,7 +24,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/destinations" element={<Destinations />} />
-          <Route path="/destination" element={<Destination />}/>
+          <Route path="/destination" element={<Destination username={username} />}/>
             {userRole === "ADMIN" && (
                 <>
                   <Route path="/destination/add" element={<AddDestination /> }/>

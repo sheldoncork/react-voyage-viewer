@@ -1,6 +1,6 @@
 /* Homepage Styling */
 .bg-image {
-    background-image: url('../../Backend/uploads/palmtrees.jpg'); 
+    background-image: url('http://localhost:8081/uploads/palmtrees.jpg'); 
     height: 100vh; 
     background-size: cover; 
     background-position: center; 
