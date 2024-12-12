@@ -12,7 +12,7 @@ import Destination from './components/Destination';
 
 function App() {
   const [userRole, setUserRole] = useState("");
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(localStorage.getItem('username') || ""); // use localStorage because it's not working without it
   const [password, setPassword] = useState("");
 
   return (
@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/destinations" element={<Destinations />} />
+          <Route path="/destinations" element={<Destinations username={username} />} />
           <Route path="/destination" element={<Destination username={username} />}/>
             {userRole === "ADMIN" && (
                 <>

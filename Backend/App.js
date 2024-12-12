@@ -91,6 +91,22 @@ app.get("/destinations", async (req, res) => {
     else res.send(results).status(200);
 });
 
+// GET saved locations /saved-locations?username=user
+app.get("/saved-locations", async (req, res) => {
+  const { username } = req.query;
+      try {
+        const user = await db.collection("user").findOne({ username });
+        if (!user) {
+          return res.status(404);
+        }
+
+        res.status(200).json({data: user.saved || [] });
+      } catch (error) {
+        console.error("Error querying user:", error);
+        res.status(500);
+      }
+    });
+
 // POST multiple images and multiple descriptions
 app.post("/destination", upload.fields([
   { name: 'image', maxCount: 1 },  // Main image

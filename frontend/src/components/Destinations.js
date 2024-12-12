@@ -74,14 +74,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-function Destinations() {
+const Destinations = ({username}) => {
     const [destinations, setDestinations] = useState([]);
     const [filteredDestinations, setFilteredDestinations] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [showSaved, setShowSaved] = useState(false);
+    const [savedDestinations, setSavedDestinations] = useState([]);
 
     useEffect(() => {
         fetchDestinations();
+        fetchSavedDestinations();
     }, []);
 
     const fetchDestinations = async () => {
@@ -93,6 +95,19 @@ function Destinations() {
             const data = await response.json();
             setDestinations(data);
             setFilteredDestinations(data);
+        } catch (error) {
+            console.error('Error fetching destinations:', error);
+        }
+    };
+
+    const fetchSavedDestinations = async () => {
+        try {
+            const response = await fetch(`http://localhost:8081/saved-locations?username=${username}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            setSavedDestinations(data);
         } catch (error) {
             console.error('Error fetching destinations:', error);
         }
@@ -122,7 +137,7 @@ function Destinations() {
         // Apply saved filter
         if (saved) {
             filtered = filtered.filter(destination =>
-                destination.saved === "1" || destination.saved === "2"
+                savedDestinations.data.includes(Number(destination.id))
             );
         }
         

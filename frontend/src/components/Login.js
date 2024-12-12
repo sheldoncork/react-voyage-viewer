@@ -20,6 +20,7 @@ const Authentication = ({ username, setUsername, password, setPassword, setUserR
             return;
         }
         
+        localStorage.setItem('username', username);
         setUserRole(data.user.role); // Set the user role (admin/user)
         } catch (err) {
             console.log("Failed to log in. Please try again."+err);
