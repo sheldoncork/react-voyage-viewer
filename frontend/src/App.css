@@ -1,38 +1,164 @@
-/* App.css */
+/* Homepage Styling */
+.bg-image {
+    background-image: url('../../Backend/uploads/palmtrees.jpg'); 
+    height: 100vh; 
+    background-size: cover; 
+    background-position: center; 
+}
 
-/* Centered text styling */
+.bg-overlay {
+    position: absolute;
+    top: 10;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 200px;
+    background-color: rgba(30, 34, 40, 0.5); 
+}
+
 .bg-text {
     position: relative;
-    top: 50%;
-    transform: translateY(-50%); /* Center vertically */
-    color: white; /* Text color */
+    transform: translateY(-50%); 
+    color: white;
 }
 
-/* Heading styling */
 .display-3 {
-    font-size: 3rem; /* Adjust size as needed */
-    margin-bottom: 20px; /* Space below heading */
-    margin-top:200px;
+    font-size: 3rem; 
+    margin-bottom: 20px; 
+    margin-top: 150px;
+    font-size: 4rem;
+    color: #ffffff;
 }
 
-/* Paragraph styling */
 .text-wrap {
-    font-size: 1.25rem; /* Slightly larger text for readability */
-    margin-bottom: 30px; /* Space below paragraph */
+    font-size: 1.5rem;
+    margin-bottom: 30px; 
 }
 
-/* Button styling */
-.button {
-    padding: 10px 20px; /* Padding for button */
-    font-size: 1.2rem; /* Button text size */
-    color: white; /* Text color */
-    background-color: #6586b3; /* Bootstrap primary color or custom color */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer on hover */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+/* Navbar styling */
+.navbar {
+    padding: 1rem 2rem;
+    background: linear-gradient(to right, #6db4ee, #8cbbec, #5383eb) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.button:hover {
-    background-color: #4b5d70; /* Darker shade on hover (Bootstrap secondary) */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white !important;
+    transition: color 0.3s ease;
 }
+
+.navbar-brand:hover {
+    color: #ffffff !important;
+}
+
+.nav-link {
+    color: white !important;
+    font-size: 1.1rem;
+    margin: 0 10px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    /* background-color: rgba(255, 255, 255, 0.1); */
+    transform: translateY(-2px); 
+}
+
+
+.navbar-nav {
+    align-items: center;
+}
+
+.container-fluid {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Destination Cards */
+.container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1200px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 1.45rem;
+    color: #333;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .col {
+    flex: 1;
+    min-width: calc(33.333% - 20px);
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: auto;
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #666;
+  }
+
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+p {
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-size: 1.8rem;
+    color: #333;
+  }
+  
