@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from "react-router-dom"
 
-const Destination = ({ saveDestination }) => {
+const Destination = ({ username }) => {
     const [data, setData] = useState([]);
     const [saved, setSaved] = useState(false);
     const [savedDestinations, setSavedDestinations] = useState([]);
@@ -27,13 +27,16 @@ const Destination = ({ saveDestination }) => {
         setSaved(true);
         setSavedDestinations((prevDestinations) => [...prevDestinations, data]);
 
-        try {
+    try {
         const response = await fetch("http://localhost:8081/save-destination", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify({
+            username,
+            destinationID: data.id,
+          }),
         });
   
         const result = await response.json();

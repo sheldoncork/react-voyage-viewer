@@ -163,15 +163,12 @@ app.get("/destination", async (req, res) => {
 app.put("/save-destination", async (req, res) => {
   const { username, destinationID } = req.body;
 
-  if (!username || !destinationID) {
+  if (!username || isNaN(destinationID)) {
     return res.status(400).send({ message: "Username and destinationID are required" });
   }
 
   try {
-    await client.connect();
-    const userCollection = db.collection("user");
-
-    const result = await userCollection.updateOne(
+    const result = await db.collection("user").updateOne(
       { username },  // Find the user
       { $addToSet: { saved: destinationID } } // add to array
     );
