@@ -62,6 +62,7 @@ app.post("/login", async (req, res) => {
     const user = await db.collection("user").findOne({ username, password });
 
     if (!user) {
+      console.log(user)
       return res.status(401).send({ error: "Invalid username or password." });
     }
 
