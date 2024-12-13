@@ -160,5 +160,73 @@ p {
 h1 {
     font-size: 1.8rem;
     color: #333;
-  }
-  
+}
+
+.btn.btn-primary {
+  background-color: #565656;
+  border-color: #565656;
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.btn.btn-primary:hover {
+  background-color: #6db4ee;
+  border-color: #6db4ee;
+  color: #ffffff;
+}
+
+.btn-custom {
+  background-color: #ffffff;
+  border-color: #5383eb;
+  color: #5383eb;
+}
+
+.btn-custom:hover {
+  background-color: #5383eb;
+  border-color: #5383eb;
+  color: #ffffff;
+}
+
+.btn-custom-success {
+  background-color: #5383eb;
+  border-color: #5383eb;
+  color: #ffffff;
+}
+
+.btn-custom-success:hover {
+  background-color: #ffffff;
+  border-color: #5383eb;
+  color: #5383eb;
+}
+
+.btn.btn-unsave {
+  background-color: #ffffff;
+  border-color: #565656;
+  color: #565656;
+  margin-left: 20px;
+  transition: all 0.2s ease;
+}
+
+.btn.btn-unsave:hover {
+  background-color: #6db4ee;
+  border-color: #6db4ee;
+  color: #ffffff;
+}
+
+.btn.btn-destinations {
+  background-color: #565656;
+  border-color: #565656;
+  color: #ffffff;
+  margin: 10px;
+  width: 150px;
+  height:55px;
+  text-align: center;
+  line-height: 40px;
+  transition: all 0.2s ease;
+}
+
+.btn.btn.btn-destinations:hover {
+  background-color: #6db4ee;
+  border-color: #6db4ee;
+  color: #ffffff;
+}

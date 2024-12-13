@@ -7,8 +7,11 @@ function AddDestination() {
         description: '',
         image: null,
         individualImages: [],
-        individualDescriptions: []
+        individualDescriptions: [],
+        activities: [''],
+        pros_and_cons: [''],
     });
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -41,6 +44,38 @@ function AddDestination() {
         }));
     };
 
+    const handleActivityChange = (index, value) => {
+      const newActivities = [...formData.activities];
+      newActivities[index] = value;
+      setFormData(prev => ({
+          ...prev,
+          activities: newActivities
+      }));
+    };
+
+    const handleProConChange = (index, value) => {
+      const newProsCons = [...formData.pros_and_cons];
+      newProsCons[index] = value;
+      setFormData(prev => ({
+          ...prev,
+          pros_and_cons: newProsCons
+      }));
+    };
+
+    const handleAddActivity = () => {
+      setFormData(prev => ({
+          ...prev,
+          activities: [...prev.activities, '']
+      }));
+    };
+
+    const handleAddProCon = () => {
+      setFormData(prev => ({
+          ...prev,
+          pros_and_cons: [...prev.pros_and_cons, '']
+      }));
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         
@@ -48,6 +83,8 @@ function AddDestination() {
         data.append('location', formData.location);
         data.append('type', formData.type);
         data.append('description', formData.description);
+        data.append('activities', JSON.stringify(formData.activities.filter(activity => activity.trim() !== '')));
+        data.append('pros_and_cons', JSON.stringify(formData.pros_and_cons.filter(proCon => proCon.trim() !== '')));
         
         // Append main image
         if (formData.image) {
@@ -185,7 +222,49 @@ function AddDestination() {
                 />
               ))}
             </div>
-    
+
+            {/* Activities */}
+            <div className="mb-3">
+              <label className="form-label">Activities</label>
+              {formData.activities.map((activity, index) => (
+                <div key={index} className="input-group mb-2">
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={activity}
+                    onChange={(e) => handleActivityChange(index, e.target.value)}
+                    placeholder={`Activity ${index + 1}`}
+                  />
+                  {index === formData.activities.length - 1 && (
+                    <button type="button" className="btn btn-outline-secondary" onClick={handleAddActivity}>
+                      +
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Pros and Cons */}
+            <div className="mb-3">
+              <label className="form-label">Pros and Cons</label>
+              {formData.pros_and_cons.map((proCon, index) => (
+                <div key={index} className="input-group mb-2">
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={proCon}
+                    onChange={(e) => handleProConChange(index, e.target.value)}
+                    placeholder={`Pro/Con ${index + 1}`}
+                  />
+                  {index === formData.pros_and_cons.length - 1 && (
+                    <button type="button" className="btn btn-outline-secondary" onClick={handleAddProCon}>
+                      +
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+
             <button type="submit" className="btn btn-primary w-100 mt-4">
               Upload Destination
             </button>

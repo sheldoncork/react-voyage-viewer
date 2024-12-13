@@ -50,98 +50,92 @@ const Destination = ({ username }) => {
       }
     };
 
-    
-
 return (
-    <>
+  <>
     {data.location ? (
-    <div className="container my-5">
+      <div className="container">
         <h1 className='text-center'>{data.location}</h1>
-      {/* Images Section */}
-      <div className="row mb-4">
-        {data.individualImages &&
-          data.individualImages.map((image, index) => (
-            <div className="col-md-3 mb-3" key={index}>
-              <div className="card shadow-sm">
-                <img
-                  src={image}
-                  className="card-img-top"
-                  alt={`Destination ${index}`}
-                />
-                <div className="card-body text-center">
-                  <p className="card-text">
-                    {data.individualDescriptions[index]}
-                  </p>
+        {/* Images Section */}
+        <div className="d-flex flex-wrap justify-content-center mb-4">
+          {data.individualImages &&
+            data.individualImages.map((image, index) => (
+              <div className="col-12 col-sm-6 col-lg-6 mb-3 px-2" key={index}>
+                <div className="card shadow-sm h-100">
+                  <img
+                    src={image}
+                    className="card-img-top"
+                    alt={`Destination ${index}`}
+                  />
+                  <div className="card-body d-flex flex-column">
+                    <p className="card-text flex-grow-1">
+                      {data.individualDescriptions[index]}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-      </div>
-
-      {/* Activities / Pros and Cons */}
-      <div className="row">
-        {/* Activities */}
-        <div className="col-md-6">
-          <div className="card shadow-sm">
-            <div className="card-header text-center bg-success text-white">
-              Activities
-            </div>
-            <ul className="list-group list-group-flush">
-              {data.activities &&
-                data.activities.map((activity, index) => (
-                  <li className="list-group-item" key={index}>
-                    {activity}
-                  </li>
-                ))}
-            </ul>
-          </div>
+            ))}
         </div>
 
-        {/* Pros / Cons */}
-        <div className="col-md-6">
-          <div className="card shadow-sm">
-            <div className="card-header text-center bg-danger text-white">
-              Pros and Cons
+        {/* Activities / Pros and Cons */}
+        <div className="d-flex flex-wrap justify-content-center mb-4">
+          {/* Activities */}
+          <div className="col-12 col-md-5 mb-3 px-2">
+            <div className="card shadow-sm h-100">
+              <div className="card-header text-center bg-success text-white">
+                Activities
+              </div>
+              <ul className="list-group list-group-flush">
+                {data.activities &&
+                  data.activities.map((activity, index) => (
+                    <li className="list-group-item" key={index}>
+                      {activity}
+                    </li>
+                  ))}
+              </ul>
             </div>
-            <ul className="list-group list-group-flush">
-              {data.pros_cons &&
-                data.pros_cons.map((pro, index) => (
-                  <li className="list-group-item" key={index}>
-                    {pro}
-                  </li>
-                ))}
-            </ul>
           </div>
-        </div>
-      </div>
 
-        {/* Buttons */}
-        <div className="justify-content-center d-flex mt-4 mb-4">
-            <div className="row">
+          {/* Pros / Cons */}
+          <div className="col-12 col-md-5 mb-3 px-2">
+            <div className="card shadow-sm h-100">
+              <div className="card-header text-center bg-danger text-white">
+                Pros and Cons
+              </div>
+              <ul className="list-group list-group-flush">
+                {data.pros_cons &&
+                  data.pros_cons.map((pro, index) => (
+                    <li className="list-group-item" key={index}>
+                      {pro}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
+          {/* Buttons */}
+          <div>
             <a
-                  href={`https://duckduckgo.com/?q=flights+for+${data.location}`}
-                  className="btn btn-primary w-100"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Book a Trip
-                </a>
+              href={`https://duckduckgo.com/?q=flights+for+${data.location}`}
+              className="btn btn-destinations"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Book a Trip
+            </a>
             <button
-                  onClick={handleSaveDestination}
-                  className="btn btn-secondary w-100"
-                >
-                  {saved ? "Destination Saved!" : "Save Destination"}
-                </button>
-            </div>
+              onClick={handleSaveDestination}
+              className="btn btn-destinations"
+            >
+              {saved ? "Saved!" : "Save Destination"}
+            </button>
+          </div>
         </div>
-    </div>
+      </div>
 
-    
-            ) : (
-            <h1 className='text-center'>404! <p>No data found</p></h1>
+    ) : (
+      <h1 className='text-center'>404! <p>No data found</p></h1>
     )}
-</>
-  );
+  </>
+);
 };
 
 export default Destination;

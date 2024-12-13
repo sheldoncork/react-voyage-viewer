@@ -15,9 +15,6 @@ const Navbar = ({userRole}) => {
             <li className="nav-item">
               <NavLink className="nav-link" to="/destinations">Destinations</NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/about">About</NavLink>
-            </li>
             {userRole === "ADMIN" && (
               <>
                 <li className='nav-item'>
@@ -28,6 +25,9 @@ const Navbar = ({userRole}) => {
                 </li>
               </>
             )}
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/about">About</NavLink>
+            </li>
           </ul>
         </div>
       </div>
