@@ -18,12 +18,16 @@
                 "Stand in awe before this colossal copper icon of freedom, rising majestically from New York Harbor as a beacon of hope and symbol of the American dream."
             ],
 			"activities": [
-				"Take a ferry out!",
-                "Visit central park!"
+				"Explore Times Square",
+                "Visit Central Park!",
+                "See a broadway show",
+                "Visit the Metropolitan Museum of Art"
 			],
 			"pros_cons": [
-				"- Lots of people",
-				"+ Lots of people"
+				"- Crowded, lots of tourists visit",
+                "- Harsh winters",
+				"+ Excellent public transportation",
+                "+ Diverse cultural experiences"
 			]
         }, 
         {
@@ -43,7 +47,19 @@
                 "Marvel at the mesmerizing reflections of the city in the gleaming Cloud Gate sculpture (affectionately known as 'The Bean').",
                 "Soak up the sun on the vibrant lakefront beaches along Lake Michigan.",
                 "Ride the historic 'L' trains that weave through the city's skyline!"
-            ]
+            ],
+            "activities": [
+				"Visit the historic sculpture downtown, the Bean!",
+                "Explore the Art Institute of Chicago",
+                "Viist the Navy Pier",
+                "Enjoy deep-dish pizza at a local pizzeria"
+			],
+			"pros_cons": [
+				"- Traffic congestion, very busy city",
+                "- High crime rates",
+				"+ Beautiful architecture",
+                "+ Rich cultural scene"
+			]
         }, 
         {
             "id": 2,
@@ -62,7 +78,20 @@
                 "Marvel at the iconic Golden Gate Bridge spanning the misty waters.",
                 "Catch thrilling waves at Ocean Beach's renowned surf spots!",
                 "Hop aboard the charming cable cars that climb the city's steep hills, offering panoramic views of this diverse and picturesque metropolis."
-            ]
+            ],
+            "activities": [
+                "Walk or bike across the Golden Gate Bridge",
+                "Ride a cable car",
+                "Visit Alcatraz Island",
+                "Explore Fisherman's Wharf",
+                "Visit the California Academy of Sciences"
+            ],
+            "pros_cons": [
+				"+ Stunning natural beauty",
+                "+ Mild year round climate",
+				"- Homelessness issues",
+                "- Earthquake risk"
+			]
         }, 
         {
             "id": 3,
@@ -81,7 +110,20 @@
                 "Dance the night away in world-famous clubs.",
                 "Explore the sleek skyscrapers and cultural hotspots of downtown.",
                 "Set sail on crystal-clear waters to experience the city's glamorous boating scene and stunning coastal vistas."
-            ]
+            ], 
+            "activities": [
+                "Visit South Beach",
+                "Explore the Art Deco Historic District",
+                "Take a boat tour",
+                "Visit the Pérez Art Museum Miami",
+                "Explore Little Havana"
+            ],
+            "pros_cons": [
+				"+ Beautiful beaches",
+                "+ Vibrant nightlife",
+				"- Hurricane risk",
+                "- High humidity"
+			]
         }, 
         {
             "id": 4,
@@ -100,7 +142,20 @@
                 "Venture out to conquer world-class ski slopes in the winter.",
                 "Hike breathtaking mountain trails in summer, all while immersing yourself in the rugged beauty of the Teton Range.",
                 "Snap a selfie beneath the iconic elk antler arches!"
-            ]
+            ],
+            "activities": [
+                "Ski at Jackson Hole Mountain Resort",
+                "Visit Grand Teton National Park",
+                "Explore the National Elk Refuge",
+                "Attend the Jackson Hole Rodeo",
+                "Visit the National Museum of Wildlife Art"
+            ],
+            "pros_cons": [
+				"+ Excellent restaurant scene",
+                "+ Wildlife spottings",
+				"- Isolated location",
+                "- Can be expensive to visit"
+			]
         },
         {
             "id": 5,
@@ -119,6 +174,19 @@
                 "Rock out under the stars at the stunning Red Rocks Amphitheatre carved into ancient sandstone.",
                 "Explore miles of scenic hiking trails in the nearby Rockies.",
                 "Immerse yourself in the vibrant urban culture of the Mile High City with its thriving craft beer scene, diverse neighborhoods, and modern downtown skyline."           
-            ]
+            ],
+            "activities": [
+                "Visit Red Rocks Amphitheatre",
+                "Explore Rocky Mountain National Park",
+                "Visit the Denver Art Museum",
+                "Attend a Colorado Rockies game",
+                "Explore the Denver Botanic Gardens"
+            ],
+            "pros_cons": [
+				"+ Easy access to outdoor activities",
+                "+ Vibrant food and bar scene",
+				"- High altitude adjustment",
+                "- Rapidly growing population"
+			]
         }
     ]

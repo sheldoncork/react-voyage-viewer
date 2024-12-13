@@ -138,6 +138,16 @@ console.log('Body:', req.body);
       // Handle individual descriptions
       individualDescriptions: req.body.individualDescriptions 
       ? JSON.parse(req.body.individualDescriptions)
+        : [],
+
+      // Handle activities
+      activities: req.body.activities
+        ? JSON.parse(req.body.activities)
+        : [],
+
+      // Handle pros and cons
+      pros_and_cons: req.body.pros_and_cons
+        ? JSON.parse(req.body.pros_and_cons)
         : []
     };
 
@@ -272,5 +282,46 @@ app.put("/save-destination/remove", async (req, res) => {
   } catch (error) {
     console.error("Error unsaving destination:", error);
     res.status(500).send({ message: "Error unsaving destination", error });
+  }
+});
+
+// DELETE a destination by ID
+app.delete("/destination/:id", async (req, res) => {
+  try {
+    const destinationId = parseInt(req.params.id);
+
+    // Find the destination to get the image filenames
+    const destination = await db.collection("destination").findOne({ id: destinationId });
+
+    if (!destination) {
+      return res.status(404).json({ error: "Destination not found" });
+    }
+
+    // Delete the destination from the database
+    const result = await db.collection("destination").deleteOne({ id: destinationId });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ error: "Destination not found" });
+    }
+
+    // Delete associated image files
+    const imagesToDelete = [destination.image, ...destination.individualImages];
+    for (let imageUrl of imagesToDelete) {
+      if (imageUrl) {
+        const filename = imageUrl.split('/').pop();
+        const filepath = path.join(__dirname, 'uploads', filename);
+        fs.unlink(filepath, (err) => {
+          if (err) console.error(`Failed to delete file: ${filepath}`, err);
+        });
+      }
+    }
+
+    res.status(200).json({ message: "Destination deleted successfully" });
+  } catch (error) {
+    console.error("Destination deletion error:", error);
+    res.status(500).json({
+      error: "Deletion failed",
+      details: error.message
+    });
   }
 });
