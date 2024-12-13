@@ -249,3 +249,28 @@ app.put("/save-destination", async (req, res) => {
     res.status(500).send({ message: "Error saving destination", error });
   }
 });
+
+// PUT to remove a saved destination
+app.put("/save-destination/remove", async (req, res) => {
+  const { username, destinationID } = req.body;
+
+  if (!username || isNaN(destinationID)) {
+    return res.status(400).send({ message: "Username and destinationID are required" });
+  }
+
+  try {
+    const result = await db.collection("user").updateOne(
+      { username },  // Find the user
+      { $pull: { saved: destinationID } } // remove from array
+    );
+
+    if (result.modifiedCount === 0) {
+      return res.status(404).send({ message: "User not found or destination already unsaved" });
+    }
+
+    res.status(200).send({ message: "Sucessfully unsaved!"});
+  } catch (error) {
+    console.error("Error unsaving destination:", error);
+    res.status(500).send({ message: "Error unsaving destination", error });
+  }
+});

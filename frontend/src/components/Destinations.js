@@ -74,7 +74,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const Destinations = ({username}) => {
+const Destinations = ({username, userRole}) => {
     const [destinations, setDestinations] = useState([]);
     const [filteredDestinations, setFilteredDestinations] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -107,7 +107,7 @@ const Destinations = ({username}) => {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            setSavedDestinations(data);
+            setSavedDestinations(data.data); // mongo returns data: {}
         } catch (error) {
             console.error('Error fetching destinations:', error);
         }
@@ -134,15 +134,52 @@ const Destinations = ({username}) => {
             );
         }
         
-        // Apply saved filter
+        // Apply saved filter        
         if (saved) {
             filtered = filtered.filter(destination =>
-                savedDestinations.data.includes(Number(destination.id))
+                savedDestinations.includes(Number(destination.id))
             );
         }
         
         setFilteredDestinations(filtered);
     };
+
+    const unsave = async (destinationID) => {
+        try {
+            const response = await fetch("http://localhost:8081/save-destination/remove", {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                username,
+                destinationID: destinationID,
+              }),
+            });
+      
+            const result = await response.json();
+            if (response.ok) {
+                console.log(result.message);
+
+                // Update destinations view
+                let newSaved = savedDestinations.filter(id => id !== destinationID);
+                setSavedDestinations(newSaved);
+
+                const filtered = destinations.filter(destination => 
+                    newSaved.includes(Number(destination.id))
+                );
+                setFilteredDestinations(filtered);
+            } else {
+              console.error("Failed to unsave destination:", result.message);
+            }
+          } catch (error) {
+            console.error("Error unsave destination:", error);
+          }
+    }
+
+    const deleteDestination = (destinationID) => {
+
+    }
 
     return (
         <div className="container">
@@ -177,6 +214,18 @@ const Destinations = ({username}) => {
                                 <Link to={`/destination?id=${destination.id}`} className="btn btn-primary">
                                     Learn More
                                 </Link>
+                                {showSaved && (<button onClick={() => unsave(destination.id)} className="btn btn-secondary bg-danger">
+                                    Unsave
+                                </button>)}
+                                {userRole === 'ADMIN' && (
+                                    <>
+                                    <Link to={`/destination/update?id=${destination.id}`} className="btn btn-primary bg-success">
+                                    Edit
+                                    </Link>
+                                    <button onClick={() => deleteDestination(destination.id)} className='btn btn-secondary bg-danger'>
+                                        Delete
+                                    </button>
+                                </>)}
                             </div>
                         </div>
                     </div>
