@@ -46,7 +46,7 @@ const storage = multer.diskStorage({
     cb(null, "uploads/"); // Save images in the 'uploads' folder
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
+    cb(null, Date.now() + '-' + file.originalname); // Unique filename
   },
 });
 
@@ -110,10 +110,12 @@ app.get("/saved-locations", async (req, res) => {
 // POST multiple images and multiple descriptions
 app.post("/destination", upload.fields([
   { name: 'image', maxCount: 1 },  // Main image
-  { name: 'individualImages', maxCount: 4 },  // Individual images
+  { name: 'individualImages' },  // Individual images
 ]), async (req, res) => {
   console.log('Files:', req.files);
 console.log('Body:', req.body);
+
+  var url = `http://${host}:${port}`
   try {
     const lastDestination = await db.collection("destination").find().limit(1).sort({ $natural: -1 }).toArray();
     const nextId = lastDestination.length > 0 ? lastDestination[0].id + 1 : 0;
@@ -126,16 +128,16 @@ console.log('Body:', req.body);
       description: req.body.description,
 
       // Handle main image upload
-      image: req.files['image'] ? `/uploads/${req.files['image'][0].filename}` : req.body.image || '',
+      image: req.files['image'] ? `${url}/uploads/${req.files['image'][0].filename}` : req.body.image || '',
 
       // Handle individual images uploads
       individualImages: req.files['individualImages']
-        ? req.files['individualImages'].map(file => `/uploads/${file.filename}`)
-        : req.body.individualImages || [],
+        ? req.files['individualImages'].map(file => `${url}/uploads/${file.filename}`)
+        : [],
 
       // Handle individual descriptions
-      individualDescriptions: req.body.individualDescriptions
-        ? JSON.parse(req.body.individualDescriptions)
+      individualDescriptions: req.body.individualDescriptions 
+      ? JSON.parse(req.body.individualDescriptions)
         : []
     };
 

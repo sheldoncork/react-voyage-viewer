@@ -68,8 +68,25 @@ function AddDestination() {
                 method: "POST",
                 body: data,
             });
-            console.log('Upload successful', await response.json());
+            const results = await response.json()
+            console.log('Upload successful', results);
+            
+            if(response.status === 200){
+              document.querySelectorAll('input').forEach((element) =>{
+                element.input = '';
+                element.disabled = true;
+              });
+              document.querySelectorAll('textarea').forEach((element) =>{
+                element.input = '';
+                element.disabled = true;
+              });
+              const submitB = document.querySelector('button');
+              submitB.disabled = true;
+              submitB.innerText = 'Successfully uploaded!';
+              alert("Successful upload!");
+            }
         } catch (error) {
+            alert(error);
             console.error('Upload failed', error);
         }
     };
@@ -105,7 +122,7 @@ function AddDestination() {
                 className="form-control"
                 value={formData.type}
                 onChange={handleInputChange}
-                placeholder="Enter the type"
+                placeholder="Enter the type (e.g. city)"
                 required
               />
             </div>
@@ -158,13 +175,13 @@ function AddDestination() {
             {/* Individual Descriptions */}
             <div className="mb-3">
               <label className="form-label">Individual Descriptions</label>
-              {[1, 2, 3, 4].map((_, index) => (
+              {formData.individualImages.map((file, index) => (
                 <textarea
                   key={index}
                   className="form-control mb-2"
-                  value={formData.individualDescriptions[index] || ""}
+                  value={formData.individualDescriptions[index]}
                   onChange={(e) => handleIndividualDescriptionChange(e, index)}
-                  placeholder={`Individual Description ${index + 1}`}
+                  placeholder={`Description for ${file.name}`}
                 />
               ))}
             </div>
