@@ -20,9 +20,6 @@ const Navbar = ({userRole}) => {
                 <li className='nav-item'>
                   <NavLink className="nav-link" to="/destination/add">Add Destination</NavLink>
                 </li>
-                <li className='nav-item'>
-                  <NavLink className="nav-link" to="/destination/update">Update Destination</NavLink>
-                </li>
               </>
             )}
             <li className="nav-item">

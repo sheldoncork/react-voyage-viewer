@@ -165,9 +165,6 @@ const Destinations = ({username, userRole}) => {
                                 </button>)}
                                 {userRole === 'ADMIN' && (
                                     <>
-                                    <Link to={`/destination/update?id=${destination.id}`} className="btn btn-primary bg-success">
-                                    Edit
-                                    </Link>
                                     <button onClick={() => deleteDestination(destination.id)} className='btn btn-secondary bg-danger'>
                                         Delete
                                     </button>

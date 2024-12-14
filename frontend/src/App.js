@@ -7,7 +7,6 @@ import About from './components/About';
 import Destinations from './components/Destinations';
 import Authentication from './components/Login';
 import AddDestination from './components/AddDestination';
-import UpdateDestination from './components/UpdateDestination';
 import Destination from './components/Destination';
 
 function App() {
@@ -28,7 +27,6 @@ function App() {
             {userRole === "ADMIN" && (
                 <>
                   <Route path="/destination/add" element={<AddDestination /> }/>
-                  <Route path="/destination/update" element={<UpdateDestination />}/>
                 </>
               )}
         </Routes>

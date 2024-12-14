@@ -167,54 +167,6 @@ console.log('Body:', req.body);
   }
 });
 
-// PUT endpoint to update destination
-app.put("/update-destination", upload.fields([
-  { name: 'image', maxCount: 1 },
-  { name: 'individualImages', maxCount: 4 },
-]), async (req, res) => {
-  try {
-    const destinationID = parseInt(req.body.id);
-
-    const updatedDestinationData = {
-      location: req.body.location,
-      type: req.body.type,
-      description: req.body.description,
-
-      image: req.files['image'] 
-        ? `/uploads/${req.files['image'][0].filename}` 
-        : req.body.image,
-
-      individualImages: req.files['individualImages']
-        ? req.files['individualImages'].map(file => `/uploads/${file.filename}`)
-        : req.body.individualImages || [],
-
-      individualDescriptions: req.body.individualDescriptions
-        ? JSON.parse(req.body.individualDescriptions)
-        : []
-    };
-
-    const result = await db.collection("destination").updateOne(
-      { id: destinationID },
-      { $set: updatedDestinationData }
-    );
-
-    if (result.matchedCount === 0) {
-      return res.status(404).json({ message: "Destination not found" });
-    }
-
-    res.status(200).json({
-      message: "Destination updated successfully",
-      destination: updatedDestinationData
-    });
-  } catch (error) {
-    console.error("Destination update error:", error);
-    res.status(500).json({
-      error: "Update failed",
-      details: error.message
-    });
-  }
-});
-
 // GET single using ?id=5
 app.get("/destination", async (req, res) => {
   const id = parseInt(req.query.id);

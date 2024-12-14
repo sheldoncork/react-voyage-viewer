@@ -1,13 +1,11 @@
 import React from 'react';
-// import sheldonImage from './myotherimages/sheldon.jpg';
-// import kennedyImage from './myotherimages/kennedy.jpg';
 
 function About() {
   return (
     <div>
       <section className="py-5 text-center container">
         <h1 className="fw-light">SE/ComS319 Construction of User Interfaces, Fall 2024</h1>
-        <h2 className="fw-light">Taught by PH.D. Abraham Aldaco</h2>
+        <h2 className="fw-light">Taught by Dr. Abraham N. Aldaco Gastelum </h2>
         <h2 className="fw-light">December 11th, 2024</h2>
       </section>
       <section className="py-3 container">
