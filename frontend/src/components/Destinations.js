@@ -148,7 +148,7 @@ const Destinations = ({username, userRole}) => {
             <div className="row">
                 {filteredDestinations.map((destination) => (
                     <div key={destination._id} className="col">
-                        <div className="card">
+                        <div className="card mx-auto p-2">
                             <img 
                                 src={destination.image} 
                                 className="card-img-top" 
